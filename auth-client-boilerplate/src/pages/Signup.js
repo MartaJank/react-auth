@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { withAuth } from '../lib/AuthProvider'
 
 class Signup extends Component {
   state = { username: "", password: "" };
@@ -7,7 +8,8 @@ class Signup extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     const { username, password } = this.state;
-    console.log('Signup -> form submit', { username, password });
+    /* console.log('Signup -> form submit', { username, password }); */
+    this.props.signup({ username, password });
   };
 
   handleChange = event => {
@@ -39,4 +41,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default withAuth(Signup);
